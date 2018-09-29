@@ -6,20 +6,24 @@ import { Link } from 'react-router-dom'
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 
-const styles = {
+const styles = theme => ({
   root: {
     flexGrow: 1,
   },
   grow: {
     flexGrow: 1,
-    textAlign: "center"
+    textAlign: "center",
+    [theme.breakpoints.up('xs')]: {
+      fontSize: 35
+    },
   },
   menuButton: {
     marginLeft: -12,
     marginRight: 20,
   },
   navbar: {
-    backgroundColor: "#00e676"
+    backgroundColor: "#00e676",
+    width: "100%"
   },
   list: {
     width: 250,
@@ -27,7 +31,7 @@ const styles = {
   fullList: {
     width: 'auto',
   },
-};
+});
 
 class Navbar extends Component {
   constructor() {
@@ -49,19 +53,19 @@ class Navbar extends Component {
     const sideNav = (
       <div className={classes.list}>
         <List>
-          <ListItem button>
-            <ListItemText primary="Home" />
-          </ListItem>
+            <ListItem to="/" component={Link} button onClick={this.toggleDrawer(false)}>
+              <ListItemText primary="Home" />
+            </ListItem>
           <Divider />
-          <ListItem button>
+          <ListItem to="/profile" component={Link} button onClick={this.toggleDrawer(false)}>
             <ListItemText primary="Profile" />
           </ListItem>
           <Divider />
-          <ListItem button>
+          <ListItem to="/forum" component={Link} button onClick={this.toggleDrawer(false)}>
             <ListItemText primary="Forum" />
           </ListItem>
           <Divider />
-          <ListItem button>
+          <ListItem to="/news" component={Link} button onClick={this.toggleDrawer(false)}>
             <ListItemText primary="News" />
           </ListItem>
           <Divider />
@@ -72,7 +76,7 @@ class Navbar extends Component {
       <div className={classes.root}>
         <AppBar className={classes.navbar} position="static">
           <Toolbar>
-            <IconButton onClick={this.toggleDrawer(true)} classNam={classes.menuButton} color="inherit" aria-label="Menu">
+            <IconButton onClick={this.toggleDrawer(true)} className={classes.menuButton} color="inherit" aria-label="Menu">
               <MenuIcon />
             </IconButton>
             <Typography variant="display2" color="inherit" className={classes.grow}>

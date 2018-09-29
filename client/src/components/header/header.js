@@ -1,30 +1,34 @@
 import React from 'react'
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { Paper, Typography, Divider, Card, CardActions, CardContent, Button } from '@material-ui/core';
+import { Paper, Typography } from '@material-ui/core';
 import Background from '../../images/cocktail.jpg'
 
-const styles = {
+const styles = theme => ({
     jumbotron: {
-        height: 250,
         width: "100%",
         backgroundImage: `url(${Background})`,
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
-        backgroundPosition: "center",
+        backgroundPositionY: "70%",
         color: "white",
+        height: 225,
+        overFlow: "visible",
+        [theme.breakpoints.up('lg')]: {
+            backgroundPositionY: "70%"
+          },
     },
     title: {
         fontFamily: "Lobster, cursive",
         color: "white",
         textAlign: "center",
-        paddingTop: 35
+        paddingTop: 10
     },
     card: {
         width: 175,
         height: 100,
     }
-}
+})
 
 const Header = props => {
     const { classes } = props;
